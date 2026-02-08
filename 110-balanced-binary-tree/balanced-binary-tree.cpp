@@ -11,31 +11,20 @@
  */
 class Solution {
 public:
+        int height(TreeNode* root) {
+        if (!root) return 0;
+
+        int lh = height(root->left);
+        if (lh == -1) return -1;
+
+        int rh = height(root->right);
+        if (rh == -1) return -1;
+
+        if (abs(lh - rh) > 1) return -1;
+
+        return 1 + max(lh, rh);
+    }
     bool isBalanced(TreeNode* root) {
-        function<int(TreeNode*)> calculateHeight = [&](TreeNode* node) -> int {
-            // Base case: empty node has height 0
-            if (!node) {
-                return 0;
-            }
-          
-            // Recursively calculate the height of left subtree
-            int leftHeight = calculateHeight(node->left);
-          
-            // Recursively calculate the height of right subtree
-            int rightHeight = calculateHeight(node->right);
-          
-            // Check if any subtree is unbalanced or if current node violates balance condition
-            // If left or right subtree is unbalanced (returns -1), or
-            // if the height difference exceeds 1, mark as unbalanced
-            if (leftHeight == -1 || rightHeight == -1 || abs(leftHeight - rightHeight) > 1) {
-                return -1;  // Indicates unbalanced tree
-            }
-          
-            // Return the height of current node (1 + maximum height of subtrees)
-            return 1 + max(leftHeight, rightHeight);
-        };
-      
-        // Tree is balanced if the height calculation doesn't return -1
-        return calculateHeight(root) >= 0;
+        return height(root) != -1;
     }
 };
