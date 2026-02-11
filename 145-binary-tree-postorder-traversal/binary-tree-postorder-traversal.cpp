@@ -10,6 +10,32 @@
  * };
  */
 class Solution {
+    // iterative Post using 1 stack
+    vector<int>itPost(TreeNode* root){
+        vector<int>ans;
+        if(!root)
+            return ans;
+
+        stack<TreeNode*>s;
+        TreeNode* curr = root, *prev=nullptr;
+        while(curr || !s.empty()){
+            while(curr!=nullptr){
+                s.push(curr);
+                curr = curr->left;
+            }
+
+            curr = s.top();
+            if(curr->right != nullptr || curr->right != prev){
+                curr = curr->right;
+            }else{
+                s.pop();
+                ans.push_back(curr->val);
+                prev = curr;
+                curr=nullptr;
+            }
+        }
+        return ans;
+    }
     void post(TreeNode* root, vector<int>&a){
         if(!root)
             return;
