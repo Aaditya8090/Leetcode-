@@ -11,6 +11,31 @@
  */
 class Solution {
 public:
+    // iterative preOrder
+    vector<int> itPre(TreeNode*root){
+        vector<int>v;
+        if(!root)
+            return v;
+
+        stack<TreeNode*>s;
+        s.push(root);
+
+        while(!s.empty()){
+            auto curr = s.top();
+            s.pop();
+
+            v.push_back(curr->val);
+
+            if(curr->right)
+                s.push(curr->right);
+
+            if(curr->left)
+                s.push(curr->left);
+        }
+        return v;
+    }
+
+    // Recursive preorder
     void pre(TreeNode* root, vector<int>&a){
         if(root==nullptr)
             return;
@@ -19,8 +44,10 @@ public:
         pre(root->right, a);
     }
     vector<int> preorderTraversal(TreeNode* root) {
-        vector<int>ans;
-        pre(root, ans);
-        return ans;
+        // vector<int>ans;
+        // pre(root, ans);
+        // return ans;
+
+        return itPre(root);
     }
 };
