@@ -32,12 +32,12 @@ public:
 
                 long long currIdx = b-l;
 
-                // if(i==0)
-                //     ll = currIdx;
-                // if(i == size-1)
-                //     r = currIdx;
+                if(i==0)
+                    ll = currIdx;
+                if(i == size-1)
+                    r = currIdx;
 
-                ans = max((int)(b-l+1), ans);
+                // ans = max((int)(b-l+1), ans);
 
                 if(a->left)
                     q.push({a->left, 2*currIdx});
@@ -45,7 +45,7 @@ public:
                 if(a->right)
                     q.push({a->right, 2*currIdx+1});
             }
-            // ans = max((int)(r-ll+1), ans);
+            ans = max((int)(r-ll+1), ans);
         }
         return ans;
     }
