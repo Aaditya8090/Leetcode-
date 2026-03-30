@@ -10,14 +10,14 @@
  * };
  */
 
-// Best Sol
+// Best Way
 class Solution {
     unordered_map<int,int> mp;
 public:
     int preIndex = 0;
 
     TreeNode* build(vector<int>& preorder, vector<int>& inorder, int inStart, int inEnd) {
-        if(inStart > inEnd) return NULL;
+        if(inStart > inEnd) return nullptr;
 
         int rootVal = preorder[preIndex++];
         TreeNode* root = new TreeNode(rootVal);
