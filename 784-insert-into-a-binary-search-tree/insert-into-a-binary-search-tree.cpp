@@ -28,8 +28,16 @@ class Solution {
     }
 public:
     TreeNode* insertIntoBST(TreeNode* root, int val) {
-        search(root, val);
-        if(root == nullptr)root= new TreeNode(val);
+        // search(root, val);
+        // if(root == nullptr)root= new TreeNode(val);
+        // return root;
+
+        if(!root)
+            return new TreeNode(val);
+        if(val> root->val){
+            root->right = insertIntoBST(root->right, val);
+        }else
+            root->left = insertIntoBST(root->left, val);
         return root;
     }
 };
