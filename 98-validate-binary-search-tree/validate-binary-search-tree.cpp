@@ -17,18 +17,29 @@ class Solution {
         in.push_back(root->val);
         ino(root->right);
     }
+
+    bool rec(TreeNode *root, long long minVal, long long maxVal){
+        if(!root)return true;
+        if(root->val <= minVal || root->val >= maxVal)
+            return false;
+        return rec(root->left, minVal, root->val) && rec(root->right, root->val, maxVal);
+    }
+
 public:
     bool isValidBST(TreeNode* root) {
-        ino(root);
-        int prev=in[0];
-        for(int i=1; i<in.size(); i++){
-            if(in[i]==prev)
-                return false;
-            else
-                prev=in[i];
-            if(in[i]<in[i-1])
-                return false;
-        }
-        return true;
+        // ino(root);
+        // int prev=in[0];
+        // for(int i=1; i<in.size(); i++){
+        //     if(in[i]==prev)
+        //         return false;
+        //     else
+        //         prev=in[i];
+        //     if(in[i]<in[i-1])
+        //         return false;
+        // }
+        // return true;
+
+        // Approach 2 using recursion
+        return rec(root, LLONG_MIN, LLONG_MAX);
     }
 };
