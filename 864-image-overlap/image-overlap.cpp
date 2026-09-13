@@ -2,29 +2,24 @@ class Solution {
 public:
     int largestOverlap(vector<vector<int>>& img1, vector<vector<int>>& img2) {
         int n = img1.size();
-        vector<pair<int, int>> vec1, vec2;
-
-        for (int r = 0; r < n; ++r) {
-            for (int c = 0; c < n; ++c) {
-                if (img1[r][c] == 1) vec1.push_back({r, c});
-                if (img2[r][c] == 1) vec2.push_back({r, c});
+        int ans=0;
+        map<pair<int, int>, int>mp;
+        for(int i=0; i<n; i++){
+            for(int j=0; j<n; j++){
+                if(img1[i][j]!= 1)
+                    continue;
+                for(int a=0; a<n; a++){
+                    for(int b=0; b<n; b++){
+                        if(img2[a][b] == 1){
+                            mp[{i-a, j-b}]++;
+                        }
+                    }
+                }
             }
         }
-
-        unordered_map<int, int> count;
-        int max_overlap = 0;
-
-        for (const auto& p1 : vec1) {
-            for (const auto& p2 : vec2) {
-                int dr = p2.first - p1.first;
-                int dc = p2.second - p1.second;
-                int key = (dr + 30) * 100 + (dc + 30);
-                
-                count[key]++;
-                max_overlap = max(max_overlap, count[key]);
-            }
+        for(auto &[a, b]: mp){
+            ans = max(ans, b);
         }
-
-        return max_overlap;
+        return ans;
     }
 };
