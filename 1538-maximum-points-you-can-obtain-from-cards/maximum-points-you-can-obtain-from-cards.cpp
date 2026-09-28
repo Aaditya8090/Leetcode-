@@ -4,6 +4,9 @@ public:
         int n = cardPoints.size();
         int sum = accumulate(cardPoints.begin(), cardPoints.end(), 0);
 
+        if(k==n)
+            return sum;
+
         int curr=0, mn=INT_MAX;
         k = n-k;
 
@@ -18,7 +21,7 @@ public:
                 mn = min(curr, mn);
             }
         }
-        
+
         return sum-mn;
     }
 };
