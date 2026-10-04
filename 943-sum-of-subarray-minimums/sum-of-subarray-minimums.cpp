@@ -6,7 +6,7 @@ public:
         stack<int>st;
         int ans=0, MOD = 1e9+7;
         for(int i=0; i<=n; i++){
-            int curr = (i==n) ? INT_MIN : arr[i];
+            int curr = (i==n) ? 0 : arr[i];
             while(!st.empty() && curr < arr[st.top()]){
                 int curr = st.top();
                 st.pop();
