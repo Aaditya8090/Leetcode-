@@ -1,7 +1,7 @@
 class Solution {
 public:
     int dp[101][101][101];
-    int solve(int i, int o_cnt, int c_cnt, string &s){
+    bool solve(int i, int o_cnt, int c_cnt, string &s){
         if(i == s.size()){
             return o_cnt == c_cnt;
         }
