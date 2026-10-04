@@ -8,11 +8,11 @@ public:
         for(int i=0; i<=n; i++){
             int curr = (i==n) ? 0 : arr[i];
             while(!st.empty() && curr < arr[st.top()]){
-                int curr = st.top();
+                int mid = st.top();
                 st.pop();
                 int prev_smaller = st.empty() ? -1 : st.top();
                 int next_smaller = i;
-                ans = (ans + ((curr-prev_smaller)*(next_smaller-curr))*1ll*arr[curr])%MOD;
+                ans = (ans + ((mid-prev_smaller)*(next_smaller-mid))*1ll*arr[mid])%MOD;
             }
             st.push(i);
         }
