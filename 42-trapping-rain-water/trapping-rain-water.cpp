@@ -1,5 +1,6 @@
 class Solution {
 public:
+    // Approach1: PrefixMax & SuffixMax approach
     // int trap(vector<int>& height) {
     //     int n = height.size();
 
