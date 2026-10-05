@@ -6,7 +6,7 @@ public:
 
         deque<int>dq; vector<int>ans;
         for(int i=0; i<n; i++){
-            if(!dq.empty() && dq.front() <= i-k){
+            while(!dq.empty() && dq.front() <= i-k){
                 dq.pop_front();
             }
 
