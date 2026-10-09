@@ -1,21 +1,6 @@
 class Solution {
 public:
-    int minInsertions(string s) {
-        // int invalid_l=0, invalid_r=0;
-        // for(char c: s){
-        //     if(c == '('){
-        //         invalid_l += 2;
-        //     }else if(c == ')'){
-        //         if(invalid_l > 0){
-        //             invalid_l--;
-        //         }else{
-        //             invalid_r++;
-        //         }
-        //     }
-        // }
-        // int ans = invalid_l*2 - invalid_r;
-        // return invalid_l+invalid_r; 
-
+    int minInsertions(string s) { 
         stack<int>st; int ans=0, hit=0, n = s.size();
         for(int i=0; i<=n; i++){
             if(hit==2){
