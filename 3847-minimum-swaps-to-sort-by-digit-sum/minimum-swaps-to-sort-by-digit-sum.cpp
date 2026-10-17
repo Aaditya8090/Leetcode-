@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int sum(int n){
+    static int sum(int n){
         int s = 0;
         while(n>0){
             s += n%10;
@@ -16,7 +16,7 @@ public:
             num.push_back(i);
         }
 
-        sort(num.begin(), num.end(), [&](int a, int b){
+        sort(num.begin(), num.end(), [](int a, int b){
             int sum1 = sum(a);
             int sum2 = sum(b);
             if(sum1 != sum2)
