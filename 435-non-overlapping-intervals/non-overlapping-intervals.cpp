@@ -11,10 +11,11 @@ public:
         int cnt=0, last=INT_MIN;
         for(auto i: intervals){
             if(i[0] >= last){
-                cnt++;
                 last = i[1];
+            }else{
+                cnt++;
             }
         }
-        return intervals.size()-cnt;
+        return cnt;
     }
 };
