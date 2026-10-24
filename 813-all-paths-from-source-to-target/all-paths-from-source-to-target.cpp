@@ -1,7 +1,7 @@
 class Solution {
 public:
     vector<vector<int>>ans;
-    void dfs(int src, vector<int>path, vector<vector<int>>& graph, int n){
+    void dfs(int src, vector<int>&path, vector<vector<int>>& graph, int n){
         path.push_back(src);
 
         if(src == n-1){
