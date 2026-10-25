@@ -14,12 +14,11 @@ public:
     }
 
     void dfs2(int src, int par, int par_val, vector<vector<int>>&adj, int n){
-        ans[src] = par_val + n - 2*nodeInSub[src];
-
-        for(int neigh: adj[src]){
-            if(neigh == par)
+        for(int child: adj[src]){
+            if(child == par)
                 continue;
-            dfs2(neigh, src, ans[src], adj, n);
+            ans[child] = par_val + n - 2*nodeInSub[child];
+            dfs2(child, src, ans[child], adj, n);
         }
     }
 
@@ -36,8 +35,7 @@ public:
         dfs1(0, -1, 0, adj, n);
         ans[0] = fstVal;
 
-        for(int child: adj[0])
-            dfs2(child, 0, fstVal, adj, n);
+        dfs2(0, -1, fstVal, adj, n);
 
         return ans;
     }
