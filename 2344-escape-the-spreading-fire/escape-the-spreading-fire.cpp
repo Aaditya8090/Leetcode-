@@ -13,12 +13,14 @@ public:
     bool isPoss(int mid, vector<vector<int>>& t, vector<vector<int>>& grid){
         vector<vector<bool>>vis(n, vector<bool>(m, false));
         queue<pair<int, int>>q;
+
         q.push({0, 0});
         vis[0][0] = true;
 
         while(!q.empty()){
             int size = q.size();
             mid++;
+
             while(size--){
                 auto [r, c] = q.front();
                 q.pop();
@@ -26,6 +28,7 @@ public:
                 for(auto &[dr, dc]: dir){
                     int nr = r + dr;
                     int nc = c + dc;
+
                     if(isVal(nr, nc, n, m) && grid[nr][nc] == 0 && !vis[nr][nc]){
                         if(nr == n-1 && nc == m-1 && mid<=t[nr][nc])
                             return true;
@@ -45,6 +48,7 @@ public:
         n = grid.size();
         m = grid[0].size();
 
+        // time for fire to reach {i, j}
         vector<vector<int>>t(n, vector<int>(m, INT_MAX));
         queue<pair<int, int>>q;
         for(int i=0; i<n; i++){
@@ -56,9 +60,7 @@ public:
             }
         }
 
-        int tim=0;
         while(!q.empty()){
-            tim++;
             int size = q.size();
             while(size--){
                 auto [r, c] = q.front();
@@ -69,7 +71,7 @@ public:
                     int nc = dc + c;
 
                     if(isVal(nr, nc, n, m) && grid[nr][nc] == 0 && t[nr][nc] == INT_MAX){
-                        t[nr][nc] = tim;
+                        t[nr][nc] = t[r][c]+1;
                         q.push({nr, nc});
                     }
                 }
