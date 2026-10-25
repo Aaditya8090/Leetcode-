@@ -1,5 +1,6 @@
 class Solution {
 public:
+    int m,n;
     vector<pair<int, int>>dir = {{0,-1}, {0, 1}, {-1, 0}, {1,0}};
 
     bool isVal(int r, int c, int n, int m){
@@ -15,9 +16,6 @@ public:
     }
 
     void dfs(int i, int j, bool &flag, vector<vector<int>>& grid){
-        int n = grid.size();
-        int m = grid[0].size();
-        
         grid[i][j] = 1;
 
         if(inVal(i, j, n, m))
@@ -33,8 +31,8 @@ public:
     }
 
     int closedIsland(vector<vector<int>>& grid) {
-        int n = grid.size();
-        int m = grid[0].size();
+        n = grid.size();
+        m = grid[0].size();
 
         int cnt=0;
         for(int i=0; i<n; i++){
