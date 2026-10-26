@@ -9,8 +9,8 @@ public:
         return true;
     }
 
-    long long dfs(int r, int c, vector<vector<int>>& grid){
-        long long sum = grid[r][c];
+    int dfs(int r, int c, int k, vector<vector<int>>& grid){
+        int sum = grid[r][c];
 
         grid[r][c] = 0;
 
@@ -19,10 +19,10 @@ public:
             int nc = c + dc;
 
             if(isVal(nr, nc) && grid[nr][nc]>0){
-                sum += dfs(nr, nc, grid);
+                sum = (sum + dfs(nr, nc, k, grid))%k;
             }
         }
-        return sum;
+        return sum%k;
     }
 
     int countIslands(vector<vector<int>>& grid, int k) {
@@ -33,7 +33,7 @@ public:
         for(int i=0; i<n; i++){
             for(int j=0; j<m; j++){
                 if(grid[i][j] > 0){
-                    count += dfs(i, j, grid) % k == 0 ? 1 : 0;
+                    count += dfs(i, j, k, grid) == 0 ? 1 : 0;
                 }
             }
         }
