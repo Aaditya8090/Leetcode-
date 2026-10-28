@@ -10,39 +10,26 @@
  */
 class Solution {
 public:
-    ListNode *last;
-    void addNewNode(ListNode*&root, ListNode*nw){
-        if(root == nullptr){
-            root = nw;
-            last = nw;
-        }else{
-            last->next = nw;
-            last = nw;
-        }
-    }
-
     ListNode* mergeKLists(vector<ListNode*>& lists) {
-        ListNode *ans = nullptr; last = nullptr;
-
         priority_queue<pair<int, ListNode*>, vector<pair<int, ListNode*>> , greater<pair<int, ListNode*>>>pq;
         for(int i=0; i<lists.size(); i++){
             if(lists[i] != nullptr)
                 pq.push({lists[i]->val, lists[i]});
         }
 
+        ListNode *dummyNode = new ListNode(0);  // first node is dummy
+        ListNode *last = dummyNode;
         while(!pq.empty()){
             auto [a, b] = pq.top();
-            // cout << a << " ";
             pq.pop();
 
-            ListNode *newNode = new ListNode(a);
-            cout << newNode <<" ";
-            addNewNode(ans, newNode);
+            last->next = b;
+            last = b;
 
             if(b->next != nullptr){
                 pq.push({b->next->val, b->next});
             }
         }
-        return ans;
+        return dummyNode->next;
     }
 };
