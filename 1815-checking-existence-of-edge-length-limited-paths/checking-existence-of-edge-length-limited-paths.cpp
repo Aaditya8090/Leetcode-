@@ -30,7 +30,7 @@ public:
             queries[i].push_back(i);
         }
 
-        auto lambda = [](vector<int>v1, vector<int>&v2){
+        auto lambda = [](vector<int>&v1, vector<int>&v2){
             return v1[2]<v2[2];
         };
 
