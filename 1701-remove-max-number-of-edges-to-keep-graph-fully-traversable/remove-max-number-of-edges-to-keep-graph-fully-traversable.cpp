@@ -8,7 +8,7 @@ public:
             par.resize(n);
             size.resize(n, 1);
             iota(par.begin(), par.end(), 0);
-            components=n;
+            components= n-1;  // 1-based indexing so exclude 0th component
         }
 
         int find(int x){
@@ -61,7 +61,7 @@ public:
             }
         }
 
-        if(alice.components >2 || bob.components>2)
+        if(alice.components != 1 || bob.components != 1)
             return -1;
         return ans;
     }
