@@ -5,9 +5,10 @@ public:
 
         for(int i=0; i<n; i++){
             cnt += s1[i]!=s2[i];
+            if(cnt>2)return false;
         }
 
-        return cnt == 2 || cnt==0;
+        return true;
     }
 
     void dfs(int src, vector<bool>&vis, vector<vector<int>>&adj){
